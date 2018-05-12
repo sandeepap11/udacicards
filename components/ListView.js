@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View,StatusBar } from 'react-native';
+import Deck from './Deck';
 
-const decks = [
-    {id:"d1", name: "udacicards", cards:["c1", "c2", "c3", "c4", "c13"]},
-    {id:"d2", name: "Card Deck 1", cards:["c5", "c9", "c11", "c14"]},
-    {id:"d3", name: "Lifestyle Choices", cards:["c6", "c7", "c8", "c10", "c12"]}
-];
 
-const cards = [{id: "c1"}, {id: "c1"}, {id: "c1"}, {id: "c1"}, {id: "c1"}, {id: "c1"}, {id: "c1"}, {id: "c1"},
-    {id: "c1"}, {id: "c1"}, {id: "c1"}, {id: "c1"}, {id: "c1"}
-];
 
 export default class ListView extends Component {
     
 
     render() {
+
+        const {decks} = this.props;
         
       return (
         <View style={styles.container}>
         {
             decks.map((deck) => (
-                <View key={deck.id}  style={styles.deck}>
-                    <Text style={{color: 'white'}}>{deck.name} </Text>
-                    <Text style={{color: 'white'}}>{deck.cards.length} </Text> 
-                </View>
+                <Deck key={deck.id} deck={deck} view="list"/>
             ))
         }
         </View>
