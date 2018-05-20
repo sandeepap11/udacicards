@@ -1,58 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity } from 'react-native';
-import { Constants } from 'expo';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { TabNavigator } from 'react-navigation';
-import Card from './Card';
-import QuizButtons from './QuizButtons';
+
+export default class AddCard extends Component {
 
 
-export default class Quiz extends Component {
-
-    state = {
-        cardNumber: 0,
-        quizView : true
-        
-    };
-
-    correctAnswers = 0;
-
-    onPress = (result) => {
-
-        const { deck } = this.props.navigation.state.params;
-
-        if(result) {
-            this.correctAnswers ++;
-        }
-
-        if (this.state.cardNumber < deck.questions.length - 1) {
-            this.setState((prevState) => ({ cardNumber: prevState.cardNumber + 1 }));
-
-        }
-        else {
-            this.setState({ quizView: false });
-        }
-    };
 
     render() {
-        const { cardNumber, quizView } = this.state;
-        const { deck } = this.props.navigation.state.params;
-        let count = 0;
-        console.log("Called from render ", this.state);
-        return (
-            <View style={styles.container}>
-            { quizView && <View style={styles.container}>
-            <Text>{cardNumber + 1} / {deck.questions.length}</Text>
-                <Card card={deck.questions[cardNumber]} />
-                <QuizButtons onPress={this.onPress}/>
-        </View> }
-        { !quizView && <View style={styles.container}>
-        <Text>You got {this.correctAnswers} correct. That's {this.correctAnswers * 100 / deck.questions.length }%</Text>
 
-            </View> }
+
+        return (
+            <View>
                 
+                
+
             </View>
-        );
+        )
     }
 }
 

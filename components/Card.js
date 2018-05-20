@@ -9,12 +9,15 @@ export default class Card extends Component {
             this.setState({answer: this.props.card.answer});
         }
        
-
     };
 
     state = {
         answer : "Answer"
     };
+
+    componentWillReceiveProps() {
+        this.setState({answer : "Answer"});
+    }
 
     render() {
 

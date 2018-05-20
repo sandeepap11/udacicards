@@ -10,12 +10,22 @@ export default class Deck extends Component {
 
   render() {
 
-    const { deck, view } = this.props;
+    const { deck, view, navigation } = this.props;
+    let deckValue = null;
+    
+    if(!deck){
+      deckValue = navigation.state.params.deck;
+    }
+    else {
+      deckValue = deck;
+    }
+
+        
 
     return (
-      <View key={deck.id} style={styles.deck}>
-        <Text style={styles.deckText}>{deck.title} </Text>
-        <Text style={styles.deckText}>{deck.questions.length} Cards</Text>
+      <View key={deckValue.id} style={ view === "list" ? styles.deck : {flex:1}}>
+        <Text style={styles.deckText}>{deckValue.title} </Text>
+        <Text style={styles.deckText}>{deckValue.questions.length} Cards</Text>
         { view !== "list" && <View>
         <TouchableOpacity
           style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
@@ -24,7 +34,8 @@ export default class Deck extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-          onPress={this.onPress}>
+          onPress={()=> navigation.navigate('Quiz',
+                        { deck: deckValue })}>
           <Text style={styles.submitBtnText}>Start Quiz</Text>
         </TouchableOpacity>
         </View> }
