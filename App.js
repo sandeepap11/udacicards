@@ -5,6 +5,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 import ListView from './components/ListView';
 import Deck from './components/Deck';
+import Card from './components/Card';
 
 
 const decks = [
@@ -34,7 +35,7 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
     
-      <Deck deck={decks[0]}/>     
+      <Card card={ cards[6] }/>     
       </View>
     );
   }
