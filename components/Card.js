@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity } from 'react-native';
 
 export default class Card extends Component {
+
+    showAnswer = () => {
+        
+        if(this.state.answer === "Answer"){
+            this.setState({answer: this.props.card.answer});
+        }
+       
+
+    };
+
+    state = {
+        answer : "Answer"
+    };
+
     render() {
 
         const { card } = this.props;
@@ -9,17 +23,8 @@ export default class Card extends Component {
         return (
             <View>
                 <Text>{ card.question }</Text>
-                <Text>Answer</Text>
-                <TouchableOpacity
-                    style={Platform.OS === 'ios' ? styles.iosCorrectBtn : styles.AndroidCorrectBtn}
-                    onPress={this.onPress}>
-                    <Text style={styles.submitBtnText}>Correct</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={Platform.OS === 'ios' ? styles.iosIncorrectBtn : styles.AndroidIncorrectBtn}
-                    onPress={this.onPress}>
-                    <Text style={styles.submitBtnText}>Incorrect</Text>
-                </TouchableOpacity>
+                <Text onPress={this.showAnswer}>{this.state.answer}</Text>
+                
 
             </View>
         )
