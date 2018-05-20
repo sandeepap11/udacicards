@@ -14,8 +14,8 @@ export default class Deck extends Component {
 
     return (
       <View key={deck.id} style={styles.deck}>
-        <Text style={styles.deckText}>{deck.name} </Text>
-        <Text style={styles.deckText}>{deck.cards.length} Cards</Text>
+        <Text style={styles.deckText}>{deck.title} </Text>
+        <Text style={styles.deckText}>{deck.questions.length} Cards</Text>
         { view !== "list" && <View>
         <TouchableOpacity
           style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}

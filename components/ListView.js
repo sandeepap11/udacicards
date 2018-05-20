@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     deck: {
         backgroundColor: 'purple',
-        height: 200,
+        height: 100,
         width: 250,
     }
 });
