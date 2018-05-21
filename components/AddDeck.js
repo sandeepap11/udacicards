@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput } from 'react-native';
 
-export default class AddCard extends Component {
+export default class AddDeck extends Component {
 
     addCard = () => { };
 
@@ -11,16 +11,12 @@ export default class AddCard extends Component {
 
         return (
             <View>
-                <Text>Enter Question</Text>
+                <Text>Enter Title</Text>
                 <TextInput
                     style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
 
                 ></TextInput>
-                <Text>Enter Answer</Text>
-                <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-
-                ></TextInput>
+                
                 <TouchableOpacity style={{ margin: 20 }} onPress={this.addCard}>
                     <Text>Add</Text>
                 </TouchableOpacity>

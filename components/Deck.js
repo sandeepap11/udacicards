@@ -29,7 +29,8 @@ export default class Deck extends Component {
         { view !== "list" && <View>
         <TouchableOpacity
           style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-          onPress={this.onPress}>
+          onPress={()=> navigation.navigate('AddCard',
+                        { deck: deckValue })}>
           <Text style={styles.submitBtnText}>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity
