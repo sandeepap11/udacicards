@@ -50,7 +50,7 @@ const Stack = createStackNavigator({
   Deck: {
     screen: Deck,
     navigationOptions: {
-      title: "Deck",
+      
       headerTintColor: "red",
       headerStyle: {
         backgroundColor: "green"

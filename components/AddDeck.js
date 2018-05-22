@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput } from 'react-native';
+import { addDeck } from '../utils/api';
 
 export default class AddDeck extends Component {
 
-    addCard = () => { };
+    
+    updateText = (deckTitle) => {
+        this.setState({
+            deckTitle
+        });
+    }
 
+    addToDecks = () => {
+        console.log("€€€");
+        const {navigation} = this.props;
+        
+        console.log(this.state.deckTitle);
+
+        const deck = {
+            id: 5,
+            title: this.state.deckTitle,
+            questions: []
+
+        };
+        addDeck(deck);
+        navigation.navigate('Deck',
+                                { deck: deck, view: "" })
+        
+     };
+
+     state = {
+         deckTitle: ""
+     };
 
     render() {
 
@@ -14,10 +41,10 @@ export default class AddDeck extends Component {
                 <Text>Enter Title</Text>
                 <TextInput
                     style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-
+                    onChangeText= {(deckText) => this.updateText(deckText) }
                 ></TextInput>
                 
-                <TouchableOpacity style={{ margin: 20 }} onPress={this.addCard}>
+                <TouchableOpacity style={{ margin: 20 }} onPress={this.addToDecks}>
                     <Text>Add</Text>
                 </TouchableOpacity>
 

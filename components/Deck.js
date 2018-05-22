@@ -3,6 +3,14 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Platform } from 'r
 
 export default class Deck extends Component {
 
+  static navigationOptions = ({ navigation }) => {
+    const { deck } = navigation.state.params;
+
+
+    return {
+      title: deck.title
+    }
+  }
 
   onPress = () => {
 
@@ -33,12 +41,14 @@ export default class Deck extends Component {
                         { deck: deckValue })}>
           <Text style={styles.submitBtnText}>Add Card</Text>
         </TouchableOpacity>
+        {(deckValue.questions.length > 0) && 
         <TouchableOpacity
           style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
           onPress={()=> navigation.navigate('Quiz',
                         { deck: deckValue })}>
           <Text style={styles.submitBtnText}>Start Quiz</Text>
         </TouchableOpacity>
+        }
         </View> }
       </View>
     );
@@ -56,7 +66,7 @@ const styles = StyleSheet.create({
   deck: {
     backgroundColor: 'white',
     height: 200,
-    width: 250,
+    width: 370,
   },
   iosSubmitBtn: {
     backgroundColor: "white",

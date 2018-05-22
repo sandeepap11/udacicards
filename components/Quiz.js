@@ -38,11 +38,10 @@ export default class Quiz extends Component {
         const { cardNumber, quizView } = this.state;
         const { deck } = this.props.navigation.state.params;
         let count = 0;
-        console.log("Called from render ", this.state);
         return (
             <View style={styles.container}>
             { quizView && <View style={styles.container}>
-            <Text>{cardNumber + 1} / {deck.questions.length}</Text>
+            <Text>{deck.questions.length - cardNumber} / {deck.questions.length}</Text>
                 <Card card={deck.questions[cardNumber]} />
                 <QuizButtons onPress={this.onPress}/>
         </View> }

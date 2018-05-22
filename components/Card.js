@@ -3,20 +3,24 @@ import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity } from 'r
 
 export default class Card extends Component {
 
-    showAnswer = () => {
+    flip = () => {
         
-        if(this.state.answer === "Answer"){
-            this.setState({answer: this.props.card.answer});
+        if(this.state.flipper === "Answer"){
+            this.setState({flipper: "Question", value: this.props.card.answer});
+        }
+        else{
+            this.setState({flipper: "Answer", value: this.props.card.question});
         }
        
     };
 
     state = {
-        answer : "Answer"
+        flipper : "Answer",
+        value: this.props.card.question
     };
 
-    componentWillReceiveProps() {
-        this.setState({answer : "Answer"});
+    componentWillReceiveProps(nextProps) {
+        this.setState({flipper: "Answer", value: nextProps.card.question});
     }
 
     render() {
@@ -25,8 +29,8 @@ export default class Card extends Component {
 
         return (
             <View>
-                <Text>{ card.question }</Text>
-                <Text onPress={this.showAnswer}>{this.state.answer}</Text>
+                <Text>{ this.state.value }</Text>
+                <Text onPress={this.flip}>{this.state.flipper}</Text>
                 
 
             </View>
