@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput } from 'react-native';
-import { addDeck } from '../utils/api';
+import { addDeck, generateId } from '../utils/api';
 
 export default class AddDeck extends Component {
 
@@ -18,7 +18,7 @@ export default class AddDeck extends Component {
         console.log(this.state.deckTitle);
 
         const deck = {
-            id: 5,
+            id: generateId(),
             title: this.state.deckTitle,
             questions: []
 

@@ -8,7 +8,6 @@ import Deck from './components/Deck';
 import Quiz from './components/Quiz';
 import AddCard from './components/AddCard';
 import AddDeck from './components/AddDeck';
-import { getDecks, getDeck } from './utils/fakeapi';
 
 const Tabs = createBottomTabNavigator({
   ListView: {

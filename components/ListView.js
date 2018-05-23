@@ -8,9 +8,27 @@ import { getDecks, getDeck } from '../utils/api';
 export default class ListView extends Component {
 
     componentDidMount() {
-        let decks = getDecks();
-        this.setState({decks});
+        console.log("Mount");
+        getDecks().then(decks => {
+            console.log(decks);
+
+            this.setState({ decks })
+        });
+
     };
+
+    componentWillReceiveProps() {
+        console.log("ReceiveProps");
+        
+        getDecks().then(decks => {
+            console.log(decks);
+
+            this.setState({ decks })
+        });
+
+    };
+
+    
 
     state = {
         decks: []
@@ -18,25 +36,26 @@ export default class ListView extends Component {
     render() {
 
         const { navigation } = this.props;
-        const {decks} = this.state;
+        const { decks } = this.state;
 
-        console.log("decks", decks);
-        
+        console.log("decks", decks, typeof (decks));
+
 
         return (
             <View style={styles.container}>
-                
-                <FlatList style={{flex:1}}
+
+                { decks.length > 0 && <FlatList style={{ flex: 1 }}
                     data={decks}
                     renderItem={
                         ({ item }) => (
-                            <TouchableOpacity onPress={() => navigation.navigate('Deck',
+                            <TouchableOpacity style={styles.block} onPress={() => navigation.navigate('Deck',
                                 { deck: item, view: "" })}>
                                 <Deck deck={item} view="list" />
                             </TouchableOpacity>
                         )}
-                        keyExtractor={(item) => item.id.toString()}
-                />
+                    keyExtractor={(item) => (item.id + item.title).toString()}
+                    /> }
+
             </View>
         );
     }
@@ -50,9 +69,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
 
     },
-    deck: {
-        backgroundColor: 'purple',
-        height: 100,
-        width: 250,
+    block: {
+        borderColor: 'black',
+        borderBottomWidth: 2
     }
 });

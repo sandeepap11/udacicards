@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput } from 'react-native';
-import { addCard } from '../utils/fakeapi';
+import { addCard } from '../utils/api';
 
 export default class AddCard extends Component {
 
@@ -18,29 +18,36 @@ export default class AddCard extends Component {
 
     addCardToDeck = () => {
         console.log("€€€");
-        const {navigation} = this.props;
-        const {deck} = navigation.state.params;
+        const { navigation } = this.props;
+        const { deck } = navigation.state.params;
         
-
-        const card = {
+        let questions = deck.questions;
+        questions.push(
+            {
+                question: this.state.question,
+                answer: this.state.answer
+            }
+        )
+        const newDeck = {
+            ...deck,
+            questions
             
-            question: this.state.question,
-            answer: this.state.answer
+
 
         };
-        console.log(card, deck.title);
-        
+        console.log(newDeck);
 
-        addCard(deck.title, card);
+
+        addCard(newDeck);
         navigation.navigate('Deck',
-                                { deck: deck, view: "" })
-        
-     };
+            { deck: deck, view: "" })
 
-     state = {
-         question: "",
-         answer: ""
-     };
+    };
+
+    state = {
+        question: "",
+        answer: ""
+    };
 
 
     render() {
@@ -51,12 +58,12 @@ export default class AddCard extends Component {
                 <Text>Enter Question</Text>
                 <TextInput
                     style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText= {(question) => this.updateQuestion(question) }
+                    onChangeText={(question) => this.updateQuestion(question)}
                 ></TextInput>
                 <Text>Enter Answer</Text>
                 <TextInput
                     style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText= {(answer) => this.updateAnswer(answer) }
+                    onChangeText={(answer) => this.updateAnswer(answer)}
                 ></TextInput>
                 <TouchableOpacity style={{ margin: 20 }} onPress={this.addCardToDeck}>
                     <Text>Add</Text>
