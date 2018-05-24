@@ -9,7 +9,7 @@ export default class Card extends Component {
         const { onPress } = this.props;
 
         return (
-            <View>
+            <View style={styles.container}>
                 <TouchableOpacity
                     style={Platform.OS === 'ios' ? styles.iosCorrectBtn : styles.AndroidCorrectBtn}
                     onPress={() => onPress(true)}>
@@ -34,11 +34,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
 
-    },
-    deck: {
-        backgroundColor: 'white',
-        height: 200,
-        width: 250,
     },
     iosCorrectBtn: {
         backgroundColor: "green",

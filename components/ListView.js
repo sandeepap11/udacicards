@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar, TouchableOpacity, FlatList } from 'r
 import Deck from './Deck';
 import { StackNavigator } from 'react-navigation';
 import { getDecks, getDeck } from '../utils/api';
+import { white, black } from '../utils/colors';
 
 
 export default class ListView extends Component {
@@ -18,7 +19,6 @@ export default class ListView extends Component {
     };
 
     componentWillReceiveProps() {
-        console.log("ReceiveProps");
         
         getDecks().then(decks => {
             console.log(decks);
@@ -64,13 +64,13 @@ export default class ListView extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: white,
         alignItems: 'center',
         justifyContent: 'center'
 
     },
     block: {
-        borderColor: 'black',
-        borderBottomWidth: 2
+        borderColor: black,
+        borderBottomWidth: .5
     }
 });

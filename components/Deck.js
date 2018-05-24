@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Platform } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Platform, Dimensions } from 'react-native';
+import { white, black, gray, green, purple, red } from '../utils/colors';
 
 export default class Deck extends Component {
 
@@ -12,11 +13,10 @@ export default class Deck extends Component {
     }
   }
 
-  onPress = () => {
-
-  };
-
   render() {
+
+    console.log("Rendering Deck");
+    
 
     const { deck, view, navigation } = this.props;
     let deckValue = null;
@@ -32,9 +32,9 @@ export default class Deck extends Component {
 
     return (
       <View key={deckValue.id} style={ view === "list" ? styles.deck : {flex:1}}>
-        <Text style={styles.deckText}>{deckValue.title} </Text>
-        <Text style={styles.deckText}>{deckValue.questions.length} Cards</Text>
-        { view !== "list" && <View>
+        <Text style={styles.deckTitle}>{deckValue.title} </Text>
+        <Text style={styles.deckSize}>{deckValue.questions.length} Cards</Text>
+        { view !== "list" && <View style={{ marginTop: 200 }}>
         <TouchableOpacity
           style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
           onPress={()=> navigation.navigate('AddCard',
@@ -58,29 +58,29 @@ export default class Deck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   deck: {
-    backgroundColor: 'white',
+    backgroundColor: white,
     height: 200,
-    width: 370,
+    width: Dimensions.get('window').width
   },
   iosSubmitBtn: {
-    backgroundColor: "white",
+    backgroundColor: black,
     padding: 10,
     borderRadius: 7,
     height: 45,
     marginLeft: 40,
     marginRight: 40,
-    borderColor: "black",
+    borderColor: black,
     borderWidth: 1,
-    marginTop: 2
+    marginTop: 4
   },
   AndroidSubmitBtn: {
-    backgroundColor: "purple",
+    backgroundColor: purple,
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
@@ -88,16 +88,22 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     alignSelf: 'flex-end',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
-  deckText: { 
-    color: 'black', 
+  deckTitle: { 
+    color: black, 
+    textAlign: "center",
+    fontSize: 60,
+    margin: 20
+  },
+  deckSize: { 
+    color: red, 
     textAlign: "center",
     fontSize: 40,
     margin: 20
   },
   submitBtnText: {
-    color: "black",
+    color: white,
     fontSize: 22,
     textAlign: 'center',
   }

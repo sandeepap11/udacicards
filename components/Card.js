@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity } from 'react-native';
+import { white, black, gray, green, purple, red } from '../utils/colors';
 
 export default class Card extends Component {
 
@@ -28,9 +29,9 @@ export default class Card extends Component {
         const { card } = this.props;
 
         return (
-            <View>
-                <Text>{ this.state.value }</Text>
-                <Text onPress={this.flip}>{this.state.flipper}</Text>
+            <View style={styles.container}>
+                <Text style={styles.question}>{ this.state.value }</Text>
+                <Text style={styles.flipper} onPress={this.flip}>{this.state.flipper}</Text>
                 
 
             </View>
@@ -41,69 +42,21 @@ export default class Card extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: white,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-start'
 
-    },
-    deck: {
-        backgroundColor: 'white',
-        height: 200,
-        width: 250,
-    },
-    iosCorrectBtn: {
-        backgroundColor: "green",
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        width: 300,
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: 2
-    },
-    AndroidCorrectBtn: {
-        backgroundColor: "green",
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 300,
-        borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    iosIncorrectBtn: {
-        backgroundColor: "red",
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        width: 300,
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: 2
-    },
-    AndroidIncorrectBtn: {
-        backgroundColor: "red",
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 300,
-        borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    deckText: {
-        color: 'black',
-        textAlign: "center",
-        fontSize: 40,
-        margin: 20
-    },
-    submitBtnText: {
-        color: "white",
-        fontSize: 22,
+    },    
+    question: {
+        color: black,
+        fontSize: 50,
         textAlign: 'center',
+        margin: 20
+    },    
+    flipper: {
+        color: red,
+        fontSize: 30,
+        textAlign: 'center',
+        margin: 20
     }
 });

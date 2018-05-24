@@ -5,6 +5,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 import Card from './Card';
 import QuizButtons from './QuizButtons';
+import { white, black, gray, green, purple, red } from '../utils/colors';
 
 
 export default class Quiz extends Component {
@@ -40,14 +41,17 @@ export default class Quiz extends Component {
         let count = 0;
         return (
             <View style={styles.container}>
-            { quizView && <View style={styles.container}>
-            <Text>{deck.questions.length - cardNumber} / {deck.questions.length}</Text>
+            { quizView && <View style={styles.quiz}>
+            <Text style={styles.status}>{deck.questions.length - cardNumber} / {deck.questions.length}</Text>
                 <Card card={deck.questions[cardNumber]} />
                 <QuizButtons onPress={this.onPress}/>
         </View> }
         { !quizView && <View style={styles.container}>
-        <Text>You got {this.correctAnswers} correct. That's {this.correctAnswers * 100 / deck.questions.length }%</Text>
-
+        <Text style={styles.normalText}>You got</Text>
+        <Text  style={styles.result}>{this.correctAnswers}</Text>
+        <Text style={styles.normalText}>correct</Text>
+        <Text style={styles.normalResultText}>Result</Text>
+        <Text  style={styles.percentage}>{Math.round(this.correctAnswers * 100 / deck.questions.length) }%</Text>
             </View> }
                 
             </View>
@@ -58,69 +62,49 @@ export default class Quiz extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: white,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'flex-start'
 
     },
-    deck: {
-        backgroundColor: 'white',
-        height: 200,
-        width: 250,
-    },
-    iosCorrectBtn: {
-        backgroundColor: "green",
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        width: 300,
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: 2
-    },
-    AndroidCorrectBtn: {
-        backgroundColor: "green",
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 300,
-        borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    iosIncorrectBtn: {
-        backgroundColor: "red",
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        width: 300,
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: 2
-    },
-    AndroidIncorrectBtn: {
-        backgroundColor: "red",
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 300,
-        borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center',
+    status: {
+        color: black,
+        fontWeight: "800",
+        textAlign: "left",
+        fontSize: 20,
+        margin: 20
     },
     deckText: {
-        color: 'black',
+        color: black,
         textAlign: "center",
         fontSize: 40,
         margin: 20
     },
-    submitBtnText: {
-        color: "white",
-        fontSize: 22,
-        textAlign: 'center',
+    normalText: {
+        color: gray,
+        textAlign: "center",
+        fontSize: 40,
+        margin: 20
+    },
+    result: {
+        color: black,
+        fontWeight: "400",
+        textAlign: "center",
+        fontSize: 60,
+        margin: 20
+    },
+    normalResultText: {
+        color: gray,
+        textAlign: "center",
+        fontSize: 40,
+        margin: 20,
+        marginTop: 50
+    },
+    percentage: {
+        color: black,
+        fontWeight: "800",
+        textAlign: "center",
+        fontSize: 80,
+        margin: 20
     }
 });

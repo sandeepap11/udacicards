@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { addCard } from '../utils/api';
+import { white, black, gray, green, purple, red } from '../utils/colors';
 
 export default class AddCard extends Component {
 
@@ -55,18 +56,20 @@ export default class AddCard extends Component {
 
         return (
             <View>
-                <Text>Enter Question</Text>
+                <Text style={styles.labelText}>Enter Question</Text>
                 <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    style={styles.textInput}
                     onChangeText={(question) => this.updateQuestion(question)}
                 ></TextInput>
-                <Text>Enter Answer</Text>
+                <Text style={styles.labelText}>Enter Answer</Text>
                 <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    style={styles.textInput}
                     onChangeText={(answer) => this.updateAnswer(answer)}
                 ></TextInput>
-                <TouchableOpacity style={{ margin: 20 }} onPress={this.addCardToDeck}>
-                    <Text>Add</Text>
+                <TouchableOpacity 
+                style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn} 
+                onPress={this.addCardToDeck}>
+                    <Text style={styles.submitBtnText}>Add</Text>
                 </TouchableOpacity>
 
 
@@ -83,64 +86,50 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
 
     },
-    deck: {
-        backgroundColor: 'white',
-        height: 200,
-        width: 250,
+    iosSubmitBtn: {
+      backgroundColor: black,
+      padding: 10,
+      borderRadius: 7,
+      height: 45,
+      marginLeft: 40,
+      marginRight: 40,
+      borderColor: black,
+      borderWidth: 1,
+      marginTop: 4,
+      justifyContent: 'center',
+      marginTop: 100
     },
-    iosCorrectBtn: {
-        backgroundColor: "green",
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        width: 300,
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: 2
-    },
-    AndroidCorrectBtn: {
-        backgroundColor: "green",
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 300,
-        borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    iosIncorrectBtn: {
-        backgroundColor: "red",
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        width: 300,
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: 2
-    },
-    AndroidIncorrectBtn: {
-        backgroundColor: "red",
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        width: 300,
-        borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    deckText: {
-        color: 'black',
-        textAlign: "center",
-        fontSize: 40,
-        margin: 20
+    AndroidSubmitBtn: {
+      backgroundColor: purple,
+      padding: 10,
+      paddingLeft: 30,
+      paddingRight: 30,
+      height: 45,
+      borderRadius: 2,
+      alignSelf: 'flex-end',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 100
     },
     submitBtnText: {
-        color: "white",
-        fontSize: 22,
-        textAlign: 'center',
+      color: white,
+      fontSize: 22,
+      textAlign: 'center',
+    },
+    textInput: {
+        height: 50,
+        width: Dimensions.get('window').width - 6,
+        borderColor: gray,
+        borderRadius: 4,
+        borderWidth: 1,
+        alignSelf: 'center',
+        padding: 5,
+        fontSize: 40
+    },
+    labelText: {
+        color: gray,
+        fontSize: 30,
+        padding: 2,
+        marginTop: 10
     }
 });

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
 import { Constants } from 'expo';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import { black, white, purple, green, red } from './utils/colors';
 import ListView from './components/ListView';
 import Deck from './components/Deck';
 import Quiz from './components/Quiz';
@@ -13,8 +14,8 @@ const Tabs = createBottomTabNavigator({
   ListView: {
     screen: ListView,
     navigationOptions: {
-      tabBarLabel: 'List View',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list-box' size={30} color={tintColor} />
     },
   },
   AddDeck: {
@@ -25,34 +26,34 @@ const Tabs = createBottomTabNavigator({
     },
   }
 }, {
-  navigationOptions: {
-    header: null
-  },
-  tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? "purple" : "white",
-    style: {
-      height: 56,
-      backgroundColor: Platform.OS === 'ios' ? "white" : "purple",
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
+    navigationOptions: {
+      header: null
+    },
+    tabBarOptions: {
+      activeTintColor: Platform.OS === 'ios' ? black : white,
+      style: {
+        height: 56,
+        backgroundColor: Platform.OS === 'ios' ? white : purple,
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 3
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+      }
     }
-  }
-});
+  });
 
 const Stack = createStackNavigator({
   Home: { screen: Tabs },
   Deck: {
     screen: Deck,
     navigationOptions: {
-      
-      headerTintColor: "red",
+
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: "green"
+        backgroundColor: black
       }
     }
   },
@@ -60,9 +61,9 @@ const Stack = createStackNavigator({
     screen: Quiz,
     navigationOptions: {
       title: "Quiz",
-      headerTintColor: "red",
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: "green"
+        backgroundColor: black
       }
     }
   },
@@ -70,9 +71,9 @@ const Stack = createStackNavigator({
     screen: AddCard,
     navigationOptions: {
       title: "Add Card",
-      headerTintColor: "red",
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: "green"
+        backgroundColor: black
       }
     }
   }
@@ -80,25 +81,10 @@ const Stack = createStackNavigator({
 
 export default class App extends Component {
   render() {
-
-
-
-
     return (
       <View style={{ flex: 1 }}>
-
         <Stack />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-
-  },
-});
