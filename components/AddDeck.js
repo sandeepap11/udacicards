@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { addDeck } from '../utils/api';
 import { generateId } from '../utils/helpers';
-import { white, black, gray, purple } from '../utils/colors';
+import { white, black, gray, purple, lightgray } from '../utils/colors';
 
 export default class AddDeck extends Component {
 
@@ -37,7 +37,7 @@ export default class AddDeck extends Component {
         const { deckTitle } = this.state;
 
         return (
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.labelText}>Enter Title</Text>
                 <TextInput
                     style={styles.textInput} value={deckTitle}
@@ -59,10 +59,7 @@ export default class AddDeck extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-
+        backgroundColor: lightgray
     },
     iosSubmitBtn: {
         backgroundColor: black,

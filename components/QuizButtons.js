@@ -76,12 +76,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    deckText: {
-        color: 'black',
-        textAlign: "center",
-        fontSize: 40,
-        margin: 20
-    },
     submitBtnText: {
         color: "white",
         fontSize: 22,

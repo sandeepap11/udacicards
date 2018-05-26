@@ -27,7 +27,6 @@ export default class Deck extends Component {
   render() {
 
     const { navigation } = this.props;
-
     const { deck, onRefresh, onDelete } = navigation.state.params;
 
     return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { addCard } from '../utils/api';
-import { white, black, gray, purple } from '../utils/colors';
+import { white, black, gray, purple, lightgray } from '../utils/colors';
 
 export default class AddCard extends Component {
 
@@ -54,9 +54,8 @@ export default class AddCard extends Component {
 
         const { question, answer } = this.state;
 
-
         return (
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.labelText}>Enter Question</Text>
                 <TextInput
                     style={styles.textInput}
@@ -84,9 +83,7 @@ export default class AddCard extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: white,
-        alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: lightgray
 
     },
     iosSubmitBtn: {
