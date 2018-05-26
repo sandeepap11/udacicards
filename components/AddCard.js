@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { addCard } from '../utils/api';
 import { white, black, gray, green, purple, red } from '../utils/colors';
 
@@ -20,8 +21,8 @@ export default class AddCard extends Component {
     addCardToDeck = () => {
         console.log("€€€");
         const { navigation } = this.props;
-        const { deck } = navigation.state.params;
-        
+        const { deck, onRefresh } = navigation.state.params;
+
         let questions = deck.questions;
         questions.push(
             {
@@ -32,7 +33,7 @@ export default class AddCard extends Component {
         const newDeck = {
             ...deck,
             questions
-            
+
 
 
         };
@@ -40,8 +41,11 @@ export default class AddCard extends Component {
 
 
         addCard(newDeck);
+
+        onRefresh && onRefresh();
+         
         navigation.navigate('Deck',
-            { deck: deck, view: "" })
+           { deck: deck, view: "" });
 
     };
 
@@ -66,9 +70,9 @@ export default class AddCard extends Component {
                     style={styles.textInput}
                     onChangeText={(answer) => this.updateAnswer(answer)}
                 ></TextInput>
-                <TouchableOpacity 
-                style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn} 
-                onPress={this.addCardToDeck}>
+                <TouchableOpacity
+                    style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+                    onPress={this.addCardToDeck}>
                     <Text style={styles.submitBtnText}>Add</Text>
                 </TouchableOpacity>
 
@@ -87,34 +91,34 @@ const styles = StyleSheet.create({
 
     },
     iosSubmitBtn: {
-      backgroundColor: black,
-      padding: 10,
-      borderRadius: 7,
-      height: 45,
-      marginLeft: 40,
-      marginRight: 40,
-      borderColor: black,
-      borderWidth: 1,
-      marginTop: 4,
-      justifyContent: 'center',
-      marginTop: 100
+        backgroundColor: black,
+        padding: 10,
+        borderRadius: 7,
+        height: 45,
+        marginLeft: 40,
+        marginRight: 40,
+        borderColor: black,
+        borderWidth: 1,
+        marginTop: 4,
+        justifyContent: 'center',
+        marginTop: 100
     },
     AndroidSubmitBtn: {
-      backgroundColor: purple,
-      padding: 10,
-      paddingLeft: 30,
-      paddingRight: 30,
-      height: 45,
-      borderRadius: 2,
-      alignSelf: 'flex-end',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 100
+        backgroundColor: purple,
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height: 45,
+        borderRadius: 2,
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 100
     },
     submitBtnText: {
-      color: white,
-      fontSize: 22,
-      textAlign: 'center',
+        color: white,
+        fontSize: 22,
+        textAlign: 'center',
     },
     textInput: {
         height: 50,

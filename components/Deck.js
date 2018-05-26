@@ -15,17 +15,24 @@ export default class Deck extends Component {
 
   render() {
 
-    console.log("Rendering Deck");
-    
 
     const { deck, view, navigation } = this.props;
-    let deckValue = null;
+
+    console.log("Rendering Deck");
+   
+    let deckValue, onRefresh = null;
     
     if(!deck){
       deckValue = navigation.state.params.deck;
     }
     else {
       deckValue = deck;
+    }
+
+    if(view !== "list") {
+      console.log("not list");
+      onRefresh = navigation.state.params.onRefresh;
+      
     }
 
         
@@ -38,7 +45,7 @@ export default class Deck extends Component {
         <TouchableOpacity
           style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
           onPress={()=> navigation.navigate('AddCard',
-                        { deck: deckValue })}>
+                        { deck: deckValue, onRefresh: onRefresh })}>
           <Text style={styles.submitBtnText}>Add Card</Text>
         </TouchableOpacity>
         {(deckValue.questions.length > 0) && 

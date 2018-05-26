@@ -25,9 +25,9 @@ export default class AddDeck extends Component {
 
         };
         addDeck(deck);
-        navigation.navigate('Deck',
-                                { deck: deck, view: "" })
+        navigation.navigate('Deck', { deck: deck, view: "" });
         
+        this.updateText("");
      };
 
      state = {

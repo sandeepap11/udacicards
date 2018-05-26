@@ -8,27 +8,35 @@ import { white, black } from '../utils/colors';
 
 export default class ListView extends Component {
 
-    componentDidMount() {
-        console.log("Mount");
+    refreshList = () => {
         getDecks().then(decks => {
             console.log(decks);
 
             this.setState({ decks })
         });
 
+    };
+
+    componentDidMount() {
+        console.log("Mount");
+        this.refreshList();
+
+    };
+
+    onRefresh = () => {
+        console.log("Refresh");
+
+        this.refreshList();
     };
 
     componentWillReceiveProps() {
-        
-        getDecks().then(decks => {
-            console.log(decks);
+        console.log("Receive Props");
 
-            this.setState({ decks })
-        });
+        this.refreshList();
 
     };
 
-    
+
 
     state = {
         decks: []
@@ -44,17 +52,17 @@ export default class ListView extends Component {
         return (
             <View style={styles.container}>
 
-                { decks.length > 0 && <FlatList style={{ flex: 1 }}
+                {decks.length > 0 && <FlatList style={{ flex: 1 }}
                     data={decks}
                     renderItem={
                         ({ item }) => (
                             <TouchableOpacity style={styles.block} onPress={() => navigation.navigate('Deck',
-                                { deck: item, view: "" })}>
+                                { deck: item, view: "", onRefresh: this.onRefresh })}>
                                 <Deck deck={item} view="list" />
                             </TouchableOpacity>
                         )}
                     keyExtractor={(item) => (item.id + item.title).toString()}
-                    /> }
+                />}
 
             </View>
         );
