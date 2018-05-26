@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
     height: 45,
     marginLeft: 40,
     marginRight: 40,
-    borderWidth: 1,
     marginTop: 4
   },
   AndroidSubmitBtn: {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Platform, Dimensions } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-import { white, black, gray, green, purple, red } from '../utils/colors';
+import { white, black, lightgray, gray, green, purple, red } from '../utils/colors';
 
 export default class Deck extends Component {
 
@@ -45,9 +45,6 @@ export default class Deck extends Component {
                         <Text style={styles.deckSize}>{deck.questions.length} Cards</Text>
                     </TouchableOpacity>
                 </Swipeout>
-
-
-
             </View>
         );
     }
@@ -56,9 +53,16 @@ export default class Deck extends Component {
 const styles = StyleSheet.create({
 
     deck: {
-        backgroundColor: white,
-        height: 200,
-        width: Dimensions.get('window').width
+        backgroundColor: lightgray,
+        width: Dimensions.get('window').width,
+        borderBottomWidth: 0.5,
+        borderColor: black,
+        padding: 0
+    },
+    block: {
+        padding: 0,
+        margin: 0,
+        height: 200
     },
     deckTitle: {
         color: black,

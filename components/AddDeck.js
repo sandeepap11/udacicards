@@ -29,7 +29,7 @@ export default class AddDeck extends Component {
         
         this.updateText("");
         console.log("seers 2");
-        navigation.navigate('Deck', { deck: deck });
+        navigation.navigate('ListView');
         
         console.log("seers 3");
      };

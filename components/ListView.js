@@ -59,10 +59,6 @@ export default class ListView extends Component {
         const { navigation } = this.props;
         const { decks } = this.state;
 
-
-
-
-
         return (
             <View style={styles.container}>
 
@@ -70,7 +66,7 @@ export default class ListView extends Component {
                     data={decks}
                     renderItem={
                         ({ item }) => (
-                            <View style={styles.block }>
+                            <View>
                                 <DeckData deck={item} onRefresh={this.onRefresh} navigation={navigation}
                                     onDelete={this.deleteDeck} />
                             </View>
@@ -90,9 +86,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
 
-    },
-    block: {
-        borderColor: black,
-        borderBottomWidth: .5
     }
 });

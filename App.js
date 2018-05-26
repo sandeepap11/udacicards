@@ -30,7 +30,7 @@ const Tabs = createBottomTabNavigator({
       header: null
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === 'ios' ? black : white,
+      activeTintColor: Platform.OS === 'ios' ? purple : white,
       style: {
         height: 56,
         backgroundColor: Platform.OS === 'ios' ? white : purple,
