@@ -2,8 +2,6 @@ import { AsyncStorage } from 'react-native'
 
 const CARDS_STORAGE_KEY = 'Udacicards:decks';
 
-export const generateId = () => Date.now().toString()
-
 
 export const addDeck = (deck) => {
 

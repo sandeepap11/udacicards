@@ -19,7 +19,6 @@ export default class AddCard extends Component {
     }
 
     addCardToDeck = () => {
-        console.log("€€€");
         const { navigation } = this.props;
         const { deck, onRefresh } = navigation.state.params;
 
@@ -57,6 +56,8 @@ export default class AddCard extends Component {
 
     render() {
 
+        const {question, answer} = this.state;
+
 
         return (
             <View>
@@ -70,11 +71,13 @@ export default class AddCard extends Component {
                     style={styles.textInput}
                     onChangeText={(answer) => this.updateAnswer(answer)}
                 ></TextInput>
+                { (question.length > 0 && answer.length > 0) && 
                 <TouchableOpacity
                     style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
                     onPress={this.addCardToDeck}>
                     <Text style={styles.submitBtnText}>Add</Text>
                 </TouchableOpacity>
+                }
 
 
             </View>
@@ -128,7 +131,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         alignSelf: 'center',
         padding: 5,
-        fontSize: 40
+        fontSize: 40,
+        backgroundColor: white
     },
     labelText: {
         color: gray,

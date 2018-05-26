@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
-import { addDeck, generateId } from '../utils/api';
+import { addDeck } from '../utils/api';
+import { generateId } from '../utils/helpers';
 import { white, black, gray, green, purple, red } from '../utils/colors';
 
 export default class AddDeck extends Component {
@@ -39,21 +40,21 @@ export default class AddDeck extends Component {
      };
 
     render() {
-
+        const {deckTitle} = this.state;
 
         return (
             <View>
                 <Text style={styles.labelText}>Enter Title</Text>
                 <TextInput
-                    style={styles.textInput} value={this.state.deckTitle}
+                    style={styles.textInput} value={deckTitle}
                     onChangeText= {(deckText) => this.updateText(deckText) }
                 ></TextInput>
                 
-                <TouchableOpacity 
+                {deckTitle.length > 0 && <TouchableOpacity 
                 style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}  
                 onPress={this.addToDecks}>
                     <Text style={ styles.submitBtnText }>Add</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
 
 
             </View>
@@ -100,14 +101,15 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
     textInput: {
-        height: 50,
+        height: 60,
         width: Dimensions.get('window').width - 6,
         borderColor: gray,
         borderRadius: 4,
         borderWidth: 1,
         alignSelf: 'center',
         padding: 5,
-        fontSize: 40
+        fontSize: 40,
+        backgroundColor: white
     },
     labelText: {
         color: gray,

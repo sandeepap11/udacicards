@@ -5,6 +5,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 import Card from './Card';
 import QuizButtons from './QuizButtons';
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers';
 import { white, black, gray, green, purple, red } from '../utils/colors';
 
 
@@ -33,6 +34,9 @@ export default class Quiz extends Component {
         else {
             this.setState({ quizView: false });
         }
+
+        clearLocalNotification()
+      .then(setLocalNotification);
     };
 
     render() {

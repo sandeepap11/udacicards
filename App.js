@@ -4,6 +4,7 @@ import { Constants } from 'expo';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { black, white, purple, green, red } from './utils/colors';
+import { setLocalNotification } from './utils/helpers';
 import ListView from './components/ListView';
 import Deck from './components/Deck';
 import Quiz from './components/Quiz';
@@ -79,7 +80,16 @@ const Stack = createStackNavigator({
   }
 });
 
+
+
 export default class App extends Component {
+
+  componentDidMount() {
+    console.log("Eagle");
+    
+    setLocalNotification();
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>

@@ -29,17 +29,15 @@ export default class Deck extends Component {
     const {navigation} = this.props;
 
     const {deck, onRefresh, onDelete} = navigation.state.params;
-   
-
-        
-
+    
     return (
       
       <View style={{flex:1}}>
       
         <Text style={styles.deckTitle}>{deck.title} </Text>
         
-        <Text style={styles.deckSize}>{deck.questions.length} Cards</Text>
+        <Text style={styles.deckSize}>{deck.questions.length} 
+                        {deck.questions.length === 1 ? " card" : " cards"}</Text>
         <View style={{ marginTop: 140 }}>
         <TouchableOpacity
           style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, 

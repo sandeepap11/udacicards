@@ -42,7 +42,8 @@ export default class Deck extends Component {
 
                         <Text style={styles.deckTitle}>{deck.title} </Text>
 
-                        <Text style={styles.deckSize}>{deck.questions.length} Cards</Text>
+                        <Text style={styles.deckSize}>{deck.questions.length} 
+                        {deck.questions.length === 1 ? " card" : " cards"}</Text>
                     </TouchableOpacity>
                 </Swipeout>
             </View>
