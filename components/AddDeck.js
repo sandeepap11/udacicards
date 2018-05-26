@@ -25,9 +25,13 @@ export default class AddDeck extends Component {
 
         };
         addDeck(deck);
-        navigation.navigate('Deck', { deck: deck, view: "" });
+        console.log("seers 1");
         
         this.updateText("");
+        console.log("seers 2");
+        navigation.navigate('Deck', { deck: deck });
+        
+        console.log("seers 3");
      };
 
      state = {
@@ -41,7 +45,7 @@ export default class AddDeck extends Component {
             <View>
                 <Text style={styles.labelText}>Enter Title</Text>
                 <TextInput
-                    style={styles.textInput}
+                    style={styles.textInput} value={this.state.deckTitle}
                     onChangeText= {(deckText) => this.updateText(deckText) }
                 ></TextInput>
                 

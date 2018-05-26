@@ -45,7 +45,7 @@ export default class AddCard extends Component {
         onRefresh && onRefresh();
          
         navigation.navigate('Deck',
-           { deck: deck, view: "" });
+           { deck: deck });
 
     };
 
@@ -85,7 +85,7 @@ export default class AddCard extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: white,
         alignItems: 'center',
         justifyContent: 'center'
 

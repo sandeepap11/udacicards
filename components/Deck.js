@@ -13,81 +13,76 @@ export default class Deck extends Component {
     }
   }
 
+  deleteDeck = () => {
+
+    const {navigation} = this.props;
+    const {deck, onRefresh, onDelete} = navigation.state.params;
+
+    onDelete(deck.id);
+
+    navigation.navigate('ListView');
+  };
+
+
   render() {
 
+    const {navigation} = this.props;
 
-    const { deck, view, navigation } = this.props;
-
-    console.log("Rendering Deck");
+    const {deck, onRefresh, onDelete} = navigation.state.params;
    
-    let deckValue, onRefresh = null;
-    
-    if(!deck){
-      deckValue = navigation.state.params.deck;
-    }
-    else {
-      deckValue = deck;
-    }
-
-    if(view !== "list") {
-      console.log("not list");
-      onRefresh = navigation.state.params.onRefresh;
-      
-    }
 
         
 
     return (
-      <View key={deckValue.id} style={ view === "list" ? styles.deck : {flex:1}}>
-        <Text style={styles.deckTitle}>{deckValue.title} </Text>
-        <Text style={styles.deckSize}>{deckValue.questions.length} Cards</Text>
-        { view !== "list" && <View style={{ marginTop: 200 }}>
+      
+      <View style={{flex:1}}>
+      
+        <Text style={styles.deckTitle}>{deck.title} </Text>
+        
+        <Text style={styles.deckSize}>{deck.questions.length} Cards</Text>
+        <View style={{ marginTop: 140 }}>
         <TouchableOpacity
-          style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+          style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, 
+        {backgroundColor: green}]}
           onPress={()=> navigation.navigate('AddCard',
-                        { deck: deckValue, onRefresh: onRefresh })}>
+                        { deck, onRefresh })}>
           <Text style={styles.submitBtnText}>Add Card</Text>
         </TouchableOpacity>
-        {(deckValue.questions.length > 0) && 
+        {
+          (deck.questions.length > 0) && 
         <TouchableOpacity
-          style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+          style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, 
+          {backgroundColor: black}]}
           onPress={()=> navigation.navigate('Quiz',
-                        { deck: deckValue })}>
+                        { deck })}>
           <Text style={styles.submitBtnText}>Start Quiz</Text>
         </TouchableOpacity>
         }
-        </View> }
+        <TouchableOpacity
+        style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, 
+        {backgroundColor: red}]}
+        onPress={this.deleteDeck}>
+        <Text style={styles.submitBtnText}>Delete Deck</Text>
+      </TouchableOpacity>
+      
+        </View> 
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: white,
-    alignItems: 'center',
-    justifyContent: 'center'
-
-  },
-  deck: {
-    backgroundColor: white,
-    height: 200,
-    width: Dimensions.get('window').width
-  },
+  
   iosSubmitBtn: {
-    backgroundColor: black,
     padding: 10,
     borderRadius: 7,
     height: 45,
     marginLeft: 40,
     marginRight: 40,
-    borderColor: black,
     borderWidth: 1,
     marginTop: 4
   },
   AndroidSubmitBtn: {
-    backgroundColor: purple,
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,

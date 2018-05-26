@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, TouchableOpacity, FlatList } from 'react-native';
+import Swipeout from 'react-native-swipeout';
 import Deck from './Deck';
+import DeckData from './DeckData';
 import { StackNavigator } from 'react-navigation';
-import { getDecks, getDeck } from '../utils/api';
-import { white, black } from '../utils/colors';
+import { getDecks, getDeck, removeEntry } from '../utils/api';
+import { white, black, red } from '../utils/colors';
 
 
 export default class ListView extends Component {
@@ -14,6 +16,16 @@ export default class ListView extends Component {
 
             this.setState({ decks })
         });
+
+    };
+
+    deleteDeck = (deckId) => {
+        console.log("removin");
+
+        removeEntry(deckId).then(
+            () => this.refreshList()
+        );
+
 
     };
 
@@ -38,6 +50,7 @@ export default class ListView extends Component {
 
 
 
+
     state = {
         decks: []
     }
@@ -46,7 +59,8 @@ export default class ListView extends Component {
         const { navigation } = this.props;
         const { decks } = this.state;
 
-        console.log("decks", decks, typeof (decks));
+
+
 
 
         return (
@@ -56,10 +70,10 @@ export default class ListView extends Component {
                     data={decks}
                     renderItem={
                         ({ item }) => (
-                            <TouchableOpacity style={styles.block} onPress={() => navigation.navigate('Deck',
-                                { deck: item, view: "", onRefresh: this.onRefresh })}>
-                                <Deck deck={item} view="list" />
-                            </TouchableOpacity>
+                            <View style={styles.block }>
+                                <DeckData deck={item} onRefresh={this.onRefresh} navigation={navigation}
+                                    onDelete={this.deleteDeck} />
+                            </View>
                         )}
                     keyExtractor={(item) => (item.id + item.title).toString()}
                 />}
