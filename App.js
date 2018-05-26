@@ -10,6 +10,8 @@ import Quiz from './components/Quiz';
 import AddCard from './components/AddCard';
 import AddDeck from './components/AddDeck';
 
+// Declare Tabs and Stack navigation
+
 const Tabs = createBottomTabNavigator({
   ListView: {
     screen: ListView,

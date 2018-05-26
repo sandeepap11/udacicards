@@ -3,7 +3,10 @@ import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-nati
 import Swipeout from 'react-native-swipeout';
 import { white, black, lightgray, gray, red } from '../utils/colors';
 
-export default class Deck extends Component {
+export default class DeckData extends Component {
+
+
+    // Deck details for List View along with Swipe to delete
 
     static navigationOptions = ({ navigation }) => {
         const { deck } = navigation.state.params;
@@ -17,6 +20,7 @@ export default class Deck extends Component {
 
         const { deck, navigation, onRefresh, onDelete } = this.props;
 
+        // Swipeout buttons declaration
         let swipeBtns = [{
             text: 'Delete',
             backgroundColor: red,

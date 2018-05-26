@@ -6,18 +6,30 @@ import { white, black, gray, purple, lightgray } from '../utils/colors';
 
 export default class AddCard extends Component {
 
+
+    /**
+     * @description Sets the entered question
+     * @param {string} question  
+    **/
     updateQuestion = (question) => {
         this.setState({
             question
         });
     }
-
+    
+    /**
+     * @description Sets the entered answer
+     * @param {string} answer  
+    **/
     updateAnswer = (answer) => {
         this.setState({
             answer
         });
     }
 
+    /**
+     * @description Add card to deck using question and answer values set in state 
+    **/
     addCardToDeck = () => {
         const { navigation } = this.props;
         const { deck, onRefresh } = navigation.state.params;
@@ -73,7 +85,6 @@ export default class AddCard extends Component {
                         <Text style={styles.submitBtnText}>Add</Text>
                     </TouchableOpacity>
                 }
-
 
             </View>
         )

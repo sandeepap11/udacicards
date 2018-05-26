@@ -6,13 +6,19 @@ import { white, black, gray, purple, lightgray } from '../utils/colors';
 
 export default class AddDeck extends Component {
 
-
+    /**
+     * @description Sets the entered deck title
+     * @param {string} answer  
+    **/
     updateText = (deckTitle) => {
         this.setState({
             deckTitle
         });
     }
 
+    /**
+     * @description Add deck to the list of decks
+    **/
     addToDecks = () => {
         const { navigation } = this.props;
 

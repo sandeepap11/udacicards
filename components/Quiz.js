@@ -16,6 +16,9 @@ export default class Quiz extends Component {
 
     correctAnswers = 0;
 
+    /**
+     * @description Track results
+    **/
     onPress = (result) => {
 
         const { deck } = this.props.navigation.state.params;

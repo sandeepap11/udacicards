@@ -9,6 +9,12 @@ import { white, black, lightgray, red } from '../utils/colors';
 
 export default class ListView extends Component {
 
+    // List View of all decks
+
+
+    /**
+     * @description Get all decks from Async Storage
+    **/
     refreshList = () => {
         getDecks().then(decks => {
             decks.sort((a, b) => b.id - a.id);
@@ -16,6 +22,9 @@ export default class ListView extends Component {
         });
     };
 
+    /**
+     * @description Remove said deck and refresh list
+    **/
     deleteDeck = (deckId) => {
         removeEntry(deckId).then(
             () => this.refreshList()

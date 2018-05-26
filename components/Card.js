@@ -5,6 +5,9 @@ import { white, black, gray, green, purple, red } from '../utils/colors';
 export default class Card extends Component {
 
 
+    /**
+     * @description Toggle question and answer in Quiz view
+    **/
     flip = () => {
         const { value, bounceValue } = this.state;
 

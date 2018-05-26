@@ -4,15 +4,19 @@ import { white, black, green, red } from '../utils/colors';
 
 export default class Deck extends Component {
 
+  // Independent Deck View for a given deck
+
   static navigationOptions = ({ navigation }) => {
     const { deck } = navigation.state.params;
-
 
     return {
       title: deck.title
     }
   }
 
+  /**
+    * @description Delete the given deck and go back to List View 
+  **/
   deleteDeck = () => {
 
     const { navigation } = this.props;
@@ -32,9 +36,7 @@ export default class Deck extends Component {
     return (
 
       <View style={{ flex: 1 }}>
-
         <Text style={styles.deckTitle}>{deck.title} </Text>
-
         <Text style={styles.deckSize}>{deck.questions.length}
           {deck.questions.length === 1 ? " card" : " cards"}</Text>
         <View style={{ marginTop: 140 }}>
