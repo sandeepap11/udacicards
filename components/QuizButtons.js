@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Platform, TouchableOpacity } from 'react-native';
 
 export default class Card extends Component {
-
 
     render() {
 
@@ -20,8 +19,6 @@ export default class Card extends Component {
                     onPress={() => onPress(false)}>
                     <Text style={styles.submitBtnText}>Incorrect</Text>
                 </TouchableOpacity>
-                
-
             </View>
         )
     }

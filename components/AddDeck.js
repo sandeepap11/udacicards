@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { addDeck } from '../utils/api';
 import { generateId } from '../utils/helpers';
-import { white, black, gray, green, purple, red } from '../utils/colors';
+import { white, black, gray, purple } from '../utils/colors';
 
 export default class AddDeck extends Component {
 
-    
+
     updateText = (deckTitle) => {
         this.setState({
             deckTitle
@@ -14,10 +14,7 @@ export default class AddDeck extends Component {
     }
 
     addToDecks = () => {
-        console.log("€€€");
-        const {navigation} = this.props;
-        
-        console.log(this.state.deckTitle);
+        const { navigation } = this.props;
 
         const deck = {
             id: generateId(),
@@ -26,34 +23,31 @@ export default class AddDeck extends Component {
 
         };
         addDeck(deck);
-        console.log("seers 1");
-        
-        this.updateText("");
-        console.log("seers 2");
-        navigation.navigate('ListView');
-        
-        console.log("seers 3");
-     };
 
-     state = {
-         deckTitle: ""
-     };
+        this.updateText("");
+        navigation.navigate('ListView');
+
+    };
+
+    state = {
+        deckTitle: ""
+    };
 
     render() {
-        const {deckTitle} = this.state;
+        const { deckTitle } = this.state;
 
         return (
             <View>
                 <Text style={styles.labelText}>Enter Title</Text>
                 <TextInput
                     style={styles.textInput} value={deckTitle}
-                    onChangeText= {(deckText) => this.updateText(deckText) }
+                    onChangeText={(deckText) => this.updateText(deckText)}
                 ></TextInput>
-                
-                {deckTitle.length > 0 && <TouchableOpacity 
-                style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}  
-                onPress={this.addToDecks}>
-                    <Text style={ styles.submitBtnText }>Add</Text>
+
+                {deckTitle.length > 0 && <TouchableOpacity
+                    style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+                    onPress={this.addToDecks}>
+                    <Text style={styles.submitBtnText}>Add</Text>
                 </TouchableOpacity>}
 
 
@@ -71,34 +65,34 @@ const styles = StyleSheet.create({
 
     },
     iosSubmitBtn: {
-      backgroundColor: black,
-      padding: 10,
-      borderRadius: 7,
-      height: 45,
-      marginLeft: 40,
-      marginRight: 40,
-      borderColor: black,
-      borderWidth: 1,
-      marginTop: 4,
-      justifyContent: 'center',
-      marginTop: 100
+        backgroundColor: black,
+        padding: 10,
+        borderRadius: 7,
+        height: 45,
+        marginLeft: 40,
+        marginRight: 40,
+        borderColor: black,
+        borderWidth: 1,
+        marginTop: 4,
+        justifyContent: 'center',
+        marginTop: 100
     },
     AndroidSubmitBtn: {
-      backgroundColor: purple,
-      padding: 10,
-      paddingLeft: 30,
-      paddingRight: 30,
-      height: 45,
-      borderRadius: 2,
-      alignSelf: 'flex-end',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 100
+        backgroundColor: purple,
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height: 45,
+        borderRadius: 2,
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 100
     },
     submitBtnText: {
-      color: white,
-      fontSize: 22,
-      textAlign: 'center',
+        color: white,
+        fontSize: 22,
+        textAlign: 'center',
     },
     textInput: {
         height: 60,

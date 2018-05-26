@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Platform, Dimensions } from 'react-native';
-import { white, black, gray, green, purple, red } from '../utils/colors';
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native';
+import { white, black, green, red } from '../utils/colors';
 
 export default class Deck extends Component {
 
@@ -15,8 +15,8 @@ export default class Deck extends Component {
 
   deleteDeck = () => {
 
-    const {navigation} = this.props;
-    const {deck, onRefresh, onDelete} = navigation.state.params;
+    const { navigation } = this.props;
+    const { deck, onRefresh, onDelete } = navigation.state.params;
 
     onDelete(deck.id);
 
@@ -26,51 +26,51 @@ export default class Deck extends Component {
 
   render() {
 
-    const {navigation} = this.props;
+    const { navigation } = this.props;
 
-    const {deck, onRefresh, onDelete} = navigation.state.params;
-    
+    const { deck, onRefresh, onDelete } = navigation.state.params;
+
     return (
-      
-      <View style={{flex:1}}>
-      
+
+      <View style={{ flex: 1 }}>
+
         <Text style={styles.deckTitle}>{deck.title} </Text>
-        
-        <Text style={styles.deckSize}>{deck.questions.length} 
-                        {deck.questions.length === 1 ? " card" : " cards"}</Text>
+
+        <Text style={styles.deckSize}>{deck.questions.length}
+          {deck.questions.length === 1 ? " card" : " cards"}</Text>
         <View style={{ marginTop: 140 }}>
-        <TouchableOpacity
-          style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, 
-        {backgroundColor: green}]}
-          onPress={()=> navigation.navigate('AddCard',
-                        { deck, onRefresh })}>
-          <Text style={styles.submitBtnText}>Add Card</Text>
-        </TouchableOpacity>
-        {
-          (deck.questions.length > 0) && 
-        <TouchableOpacity
-          style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, 
-          {backgroundColor: black}]}
-          onPress={()=> navigation.navigate('Quiz',
-                        { deck })}>
-          <Text style={styles.submitBtnText}>Start Quiz</Text>
-        </TouchableOpacity>
-        }
-        <TouchableOpacity
-        style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, 
-        {backgroundColor: red}]}
-        onPress={this.deleteDeck}>
-        <Text style={styles.submitBtnText}>Delete Deck</Text>
-      </TouchableOpacity>
-      
-        </View> 
+          <TouchableOpacity
+            style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn,
+            { backgroundColor: green }]}
+            onPress={() => navigation.navigate('AddCard',
+              { deck, onRefresh })}>
+            <Text style={styles.submitBtnText}>Add Card</Text>
+          </TouchableOpacity>
+          {
+            (deck.questions.length > 0) &&
+            <TouchableOpacity
+              style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn,
+              { backgroundColor: black }]}
+              onPress={() => navigation.navigate('Quiz',
+                { deck })}>
+              <Text style={styles.submitBtnText}>Start Quiz</Text>
+            </TouchableOpacity>
+          }
+          <TouchableOpacity
+            style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn,
+            { backgroundColor: red }]}
+            onPress={this.deleteDeck}>
+            <Text style={styles.submitBtnText}>Delete Deck</Text>
+          </TouchableOpacity>
+
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  
+
   iosSubmitBtn: {
     padding: 10,
     borderRadius: 7,
@@ -89,14 +89,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  deckTitle: { 
-    color: black, 
+  deckTitle: {
+    color: black,
     textAlign: "center",
     fontSize: 60,
     margin: 20
   },
-  deckSize: { 
-    color: red, 
+  deckSize: {
+    color: red,
     textAlign: "center",
     fontSize: 40,
     margin: 20

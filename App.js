@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
-import { Constants } from 'expo';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { black, white, purple, green, red } from './utils/colors';
@@ -51,7 +50,6 @@ const Stack = createStackNavigator({
   Deck: {
     screen: Deck,
     navigationOptions: {
-
       headerTintColor: white,
       headerStyle: {
         backgroundColor: black
@@ -80,13 +78,9 @@ const Stack = createStackNavigator({
   }
 });
 
-
-
 export default class App extends Component {
 
   componentDidMount() {
-    console.log("Eagle");
-    
     setLocalNotification();
   }
 

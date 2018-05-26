@@ -5,7 +5,3 @@ export const lightgray = "#e1e4ea";
 export const purple = '#292477';
 export const red = '#f00';
 export const green = '#114217';
-export const orange = '#f26f28';
-export const blue = '#4e4cb8';
-export const lightPurp = '#7c53c3';
-export const pink = '#b93fb3';

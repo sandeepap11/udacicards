@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity } from 'react-native';
-import { Constants } from 'expo';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { TabNavigator } from 'react-navigation';
+import { StyleSheet, Text, View } from 'react-native';
 import Card from './Card';
 import QuizButtons from './QuizButtons';
 import { setLocalNotification, clearLocalNotification } from '../utils/helpers';
-import { white, black, gray, green, purple, red } from '../utils/colors';
+import { white, black, gray } from '../utils/colors';
 
 
 export default class Quiz extends Component {
 
     state = {
         cardNumber: 0,
-        quizView : true
-        
+        quizView: true
+
     };
 
     correctAnswers = 0;
@@ -23,8 +20,8 @@ export default class Quiz extends Component {
 
         const { deck } = this.props.navigation.state.params;
 
-        if(result) {
-            this.correctAnswers ++;
+        if (result) {
+            this.correctAnswers++;
         }
 
         if (this.state.cardNumber < deck.questions.length - 1) {
@@ -36,7 +33,7 @@ export default class Quiz extends Component {
         }
 
         clearLocalNotification()
-      .then(setLocalNotification);
+            .then(setLocalNotification);
     };
 
     render() {
@@ -45,19 +42,25 @@ export default class Quiz extends Component {
         let count = 0;
         return (
             <View style={styles.container}>
-            { quizView && <View style={styles.quiz}>
-            <Text style={styles.status}>{deck.questions.length - cardNumber} / {deck.questions.length}</Text>
-                <Card card={deck.questions[cardNumber]} />
-                <QuizButtons onPress={this.onPress}/>
-        </View> }
-        { !quizView && <View style={styles.container}>
-        <Text style={styles.normalText}>You got</Text>
-        <Text  style={styles.result}>{this.correctAnswers}</Text>
-        <Text style={styles.normalText}>correct</Text>
-        <Text style={styles.normalResultText}>Result</Text>
-        <Text  style={styles.percentage}>{Math.round(this.correctAnswers * 100 / deck.questions.length) }%</Text>
-            </View> }
-                
+                {
+                    quizView &&
+                    <View style={styles.quiz}>
+                        <Text style={styles.status}>{deck.questions.length - cardNumber} / {deck.questions.length}</Text>
+                        <Card card={deck.questions[cardNumber]} />
+                        <QuizButtons onPress={this.onPress} />
+                    </View>
+                }
+                {
+                    !quizView &&
+                    <View style={styles.container}>
+                        <Text style={styles.normalText}>You got</Text>
+                        <Text style={styles.result}>{this.correctAnswers}</Text>
+                        <Text style={styles.normalText}>correct</Text>
+                        <Text style={styles.normalResultText}>Result</Text>
+                        <Text style={styles.percentage}>{Math.round(this.correctAnswers * 100 / deck.questions.length)}%</Text>
+                    </View>
+                }
+
             </View>
         );
     }

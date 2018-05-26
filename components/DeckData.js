@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-import { white, black, lightgray, gray, green, purple, red } from '../utils/colors';
+import { white, black, lightgray, gray, red } from '../utils/colors';
 
 export default class Deck extends Component {
 
     static navigationOptions = ({ navigation }) => {
         const { deck } = navigation.state.params;
 
-
         return {
             title: deck.title
         }
-    }
-
-
-
+    };
 
     render() {
-
 
         const { deck, navigation, onRefresh, onDelete } = this.props;
 
@@ -29,8 +24,6 @@ export default class Deck extends Component {
             onPress: () => { onDelete(deck.id) }
         }];
 
-
-
         return (
 
             <View style={styles.deck}>
@@ -39,9 +32,7 @@ export default class Deck extends Component {
                     backgroundColor='transparent'>
                     <TouchableOpacity style={styles.block} onPress={() => navigation.navigate('Deck',
                         { deck, onRefresh, onDelete })}>
-
                         <Text style={styles.deckTitle}>{deck.title} </Text>
-
                         <Text style={styles.deckSize}>{deck.questions.length} 
                         {deck.questions.length === 1 ? " card" : " cards"}</Text>
                     </TouchableOpacity>

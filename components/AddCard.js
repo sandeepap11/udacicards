@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Platform, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { addCard } from '../utils/api';
-import { white, black, gray, green, purple, red } from '../utils/colors';
+import { white, black, gray, purple } from '../utils/colors';
 
 export default class AddCard extends Component {
 
@@ -33,18 +33,14 @@ export default class AddCard extends Component {
             ...deck,
             questions
 
-
-
         };
-        console.log(newDeck);
-
 
         addCard(newDeck);
 
         onRefresh && onRefresh();
-         
+
         navigation.navigate('Deck',
-           { deck: deck });
+            { deck: deck });
 
     };
 
@@ -56,7 +52,7 @@ export default class AddCard extends Component {
 
     render() {
 
-        const {question, answer} = this.state;
+        const { question, answer } = this.state;
 
 
         return (
@@ -71,12 +67,12 @@ export default class AddCard extends Component {
                     style={styles.textInput}
                     onChangeText={(answer) => this.updateAnswer(answer)}
                 ></TextInput>
-                { (question.length > 0 && answer.length > 0) && 
-                <TouchableOpacity
-                    style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-                    onPress={this.addCardToDeck}>
-                    <Text style={styles.submitBtnText}>Add</Text>
-                </TouchableOpacity>
+                {(question.length > 0 && answer.length > 0) &&
+                    <TouchableOpacity
+                        style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+                        onPress={this.addCardToDeck}>
+                        <Text style={styles.submitBtnText}>Add</Text>
+                    </TouchableOpacity>
                 }
 
 
